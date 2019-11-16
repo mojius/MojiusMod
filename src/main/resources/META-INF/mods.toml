@@ -1,0 +1,13 @@
+modLoader="javafml" #mandatory
+loaderVersion="[28,)" #mandatory (28 is current forge version)
+[[mods]] #mandatory
+modId="mojiusmod" #mandatory
+version="0.01" #mandatory
+displayName="Mojius Mod" #mandatory
+authors="Mojius" #optional
+description='''
+This mod does whatever I want it to, so that's that.
+I told Koa if I wasn't making minecraft mods by the end of the school year he could tase me.
+I'm sticking to that...
+'''
+
