@@ -28,7 +28,7 @@ public class ClientSetup {
     
 	 @SubscribeEvent
 	 public static void onItemColor(ColorHandlerEvent.Item event) {
-	 event.getItemColors().register((stack, i) -> 0xff0000, InitItem.grassman_spawn_egg);
+	 event.getItemColors().register((stack, i) -> 0x006600, InitItem.grassman_spawn_egg); //Don't know how this works
 	 }
 	
 	

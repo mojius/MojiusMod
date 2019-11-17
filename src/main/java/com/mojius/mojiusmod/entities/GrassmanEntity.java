@@ -1,6 +1,7 @@
 package com.mojius.mojiusmod.entities;
 
-import net.minecraft.entity.CreatureEntity;
+import com.mojius.mojiusmod.init.InitSound;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -12,15 +13,17 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class GrassmanEntity extends CreatureEntity {
+public class GrassmanEntity extends MonsterEntity {
 
-	public GrassmanEntity(EntityType<? extends CreatureEntity> type, World worldIn)
+	public GrassmanEntity(EntityType<? extends MonsterEntity> type, World worldIn)
 	{
 		super (type, worldIn); 
 	}
-
+	
 	protected void registerGoals() {
 	      this.goalSelector.addGoal(1, new SwimGoal(this));
 	      this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -45,7 +48,31 @@ public class GrassmanEntity extends CreatureEntity {
 		this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0d);
 	}
 	
+	   protected SoundEvent getAmbientSound() {
+		      return InitSound.GRASSMANAMBIENT;
+		   }
+
+		   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		      return InitSound.GRASSMANHURT;
+		   }
+
+		   protected SoundEvent getDeathSound() { 
+		      return InitSound.GRASSMANDEATH;
+		   }
 	
+		   
+			
+		public void fireWeakness(DamageSource damageSourceIn) {
+			if (damageSourceIn.getDamageType() == (DamageSource.IN_FIRE.toString())
+				|| damageSourceIn.getDamageType() == (DamageSource.ON_FIRE.toString())
+				|| damageSourceIn.getDamageType() == (DamageSource.LAVA.toString())
+				|| damageSourceIn.getDamageType() == (DamageSource.HOT_FLOOR.toString())
+				)
+			{
+				damageSourceIn.setDamageBypassesArmor();
+			}
+		}
+		   
 	public void livingTick() {
 		  
 		if (this.getEntityWorld().getDimension().isNether())
