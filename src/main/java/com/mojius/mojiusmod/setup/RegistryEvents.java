@@ -34,9 +34,9 @@ import net.minecraftforge.fml.common.Mod;
 		public static void registerSound(final RegistryEvent.Register<SoundEvent> event)
 		{
 			event.getRegistry().registerAll(
-					InitSound.GRASSMANAMBIENT = new SoundEvent(new ResourceLocation(MojiusMod.MOD_ID, "entity_grassman_ambient")),
-					InitSound.GRASSMANHURT  = new SoundEvent(new ResourceLocation(MojiusMod.MOD_ID, "entity_grassman_hurt")),
-					InitSound.GRASSMANDEATH  = new SoundEvent(new ResourceLocation(MojiusMod.MOD_ID, "entity_grassman_death"))
+					InitSound.GRASSMAN_AMBIENT,
+					InitSound.GRASSMAN_HURT,
+					InitSound.GRASSMAN_DEATH
 					);
 		}
 		
@@ -74,7 +74,7 @@ import net.minecraftforge.fml.common.Mod;
 		{
 			event.getRegistry().registerAll(
 			 
-			InitEntity.TNTARROW  = (EntityType<TNTArrowEntity>) EntityType.Builder.<TNTArrowEntity>create(TNTArrowEntity::new, EntityClassification.MISC)
+			InitEntity.TNTARROW = (EntityType<TNTArrowEntity>) EntityType.Builder.<TNTArrowEntity>create(TNTArrowEntity::new, EntityClassification.MISC)
 					.size(0.5F, 0.5F)
 					.setCustomClientFactory((spawnEntity, world) -> new TNTArrowEntity(InitEntity.TNTARROW, world)) //TODO: Figure what the fuck this does
 					.build("tnt_arrow")
@@ -94,7 +94,7 @@ import net.minecraftforge.fml.common.Mod;
 		
 		public static void registerEntityWorldSpawns()
 		{
-			registerEntityWorldSpawn(InitEntity.GRASSMAN, EntityClassification.MONSTER, 10, 3, 6,
+			registerEntityWorldSpawn(InitEntity.GRASSMAN, EntityClassification.MONSTER, 1, 4, 6,
 					Biomes.DARK_FOREST_HILLS, 
 					Biomes.DARK_FOREST,
 					Biomes.FLOWER_FOREST,

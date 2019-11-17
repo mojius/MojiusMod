@@ -1,27 +1,26 @@
 {
-  "entity_grassman_ambient": {
-    "category": "hostile",
-    "subtitle": "mojiusmod.subtitles.grassman.ambient",
+  "entity.grassman.ambient": {
+    "category": "entity",
+    "subtitle": "subtitle.mojiusmod.entity.grassman.ambient",
     "sounds": [ 
     			"mojiusmod:grassman_idle1",
     			"mojiusmod:grassman_idle2",
     			"mojiusmod:grassman_idle3"
     		  ]
    },
-  "entity_grassman_hurt": {
-    "category": "hostile",
-    "subtitle": "mojiusmod.subtitles.grassman.hurt",
+  "entity.grassman.hurt": {
+    "category": "entity",
+    "subtitle": "subtitle.mojiusmod.entity.grassman.hurt",
     "sounds": [ 
     			"mojiusmod:grassman_hurt1",
     			"mojiusmod:grassman_hurt2",
     			"mojiusmod:grassman_hurt3"
     			]
 	},
-	"entity_grassman_death": {
-    "category": "hostile",
-    "subtitle": "mojiusmod.subtitles.grassman.death",
-    "sounds": [mojiusmod:grassman_death]
+	"entity.grassman.death": {
+    "category": "entity",
+    "subtitle": "subtitle.mojiusmod.entity.grassman.death",
+    "sounds": ["mojiusmod:grassman_death"]
 	}
-    ]
-  }
-}
+ }
+ 

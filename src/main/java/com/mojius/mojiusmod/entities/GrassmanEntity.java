@@ -1,9 +1,12 @@
 package com.mojius.mojiusmod.entities;
 
+import java.util.Random;
+
 import com.mojius.mojiusmod.init.InitSound;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -15,6 +18,9 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class GrassmanEntity extends MonsterEntity {
@@ -49,29 +55,31 @@ public class GrassmanEntity extends MonsterEntity {
 	}
 	
 	   protected SoundEvent getAmbientSound() {
-		      return InitSound.GRASSMANAMBIENT;
+		      return InitSound.GRASSMAN_AMBIENT;
 		   }
 
 		   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		      return InitSound.GRASSMANHURT;
+		      return InitSound.GRASSMAN_HURT;
 		   }
 
 		   protected SoundEvent getDeathSound() { 
-		      return InitSound.GRASSMANDEATH;
+		      return InitSound.GRASSMAN_DEATH;
 		   }
 	
 		   
-			
-		public void fireWeakness(DamageSource damageSourceIn) {
-			if (damageSourceIn.getDamageType() == (DamageSource.IN_FIRE.toString())
-				|| damageSourceIn.getDamageType() == (DamageSource.ON_FIRE.toString())
-				|| damageSourceIn.getDamageType() == (DamageSource.LAVA.toString())
-				|| damageSourceIn.getDamageType() == (DamageSource.HOT_FLOOR.toString())
-				)
-			{
-				damageSourceIn.setDamageBypassesArmor();
-			}
-		}
+		   protected void updateAITasks() {
+			      if (this.isBurning()) {
+			         this.attackEntityFrom(DamageSource.ON_FIRE, 2.0F);
+			      }
+		   }
+		   
+		   public static boolean func_223325_c(EntityType<? extends MonsterEntity> p_223325_0_, IWorld p_223325_1_, SpawnReason p_223325_2_, BlockPos p_223325_3_, Random p_223325_4_) {
+			   return p_223325_1_.getDifficulty() != Difficulty.PEACEFUL && func_223323_a(p_223325_1_, p_223325_3_, p_223325_4_) && func_223315_a(p_223325_0_, p_223325_1_, p_223325_2_, p_223325_3_, p_223325_4_);
+			   }
+
+			   public static boolean func_223324_d(EntityType<? extends MonsterEntity> p_223324_0_, IWorld p_223324_1_, SpawnReason p_223324_2_, BlockPos p_223324_3_, Random p_223324_4_) {
+			      return p_223324_1_.getDifficulty() != Difficulty.PEACEFUL && func_223315_a(p_223324_0_, p_223324_1_, p_223324_2_, p_223324_3_, p_223324_4_);
+			   }
 		   
 	public void livingTick() {
 		  

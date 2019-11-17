@@ -5,5 +5,9 @@
 	"block.mojiusmod.red_bricks": "Red Bricks",
 	
 	"entity.mojiusmod.tnt_arrow": "TNT Arrow Entity",
-	"entity.mojiusmod.grassman": "Grassman"
+	"entity.mojiusmod.grassman": "Grassman",
+	
+	"subtitle.mojiusmod.entity.grassman.ambient": "Grassman noises",
+	"subtitle.mojiusmod.entity.grassman.hurt": "Grassman hurt",
+	"subtitle.mojiusmod.entity.grassman.death": "Grassman death"
 }
