@@ -31,7 +31,7 @@ public class GrassmanEggItem extends Item {
     }
 
     /**
-     * Called when this item is used when targetting a Block
+     * Called when this item is used when targeting a Block
      */
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {

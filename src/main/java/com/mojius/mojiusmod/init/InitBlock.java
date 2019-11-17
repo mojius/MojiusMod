@@ -8,5 +8,5 @@ public class InitBlock {
 	
 	@ObjectHolder("mojiusmod:red_bricks")
 	public static RedBricksBlock red_bricks;
-
+ 
 }

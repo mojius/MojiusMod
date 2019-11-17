@@ -1,5 +1,6 @@
 package com.mojius.mojiusmod.entities;
 
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -13,9 +14,9 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
-public class GrassmanEntity extends MonsterEntity {
+public class GrassmanEntity extends CreatureEntity {
 
-	public GrassmanEntity(EntityType<? extends MonsterEntity> type, World worldIn)
+	public GrassmanEntity(EntityType<? extends CreatureEntity> type, World worldIn)
 	{
 		super (type, worldIn); 
 	}

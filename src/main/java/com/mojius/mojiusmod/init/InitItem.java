@@ -3,7 +3,6 @@ package com.mojius.mojiusmod.init;
 import com.mojius.mojiusmod.items.GrassmanEggItem;
 import com.mojius.mojiusmod.items.TNTArrowItem;
 
-import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class InitItem {

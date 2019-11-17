@@ -1,5 +1,6 @@
 package com.mojius.mojiusmod.client.renders;
 
+import com.mojius.mojiusmod.MojiusMod;
 import com.mojius.mojiusmod.entities.TNTArrowEntity;
 
 import net.minecraft.client.renderer.entity.ArrowRenderer;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class TNTArrowRender extends ArrowRenderer<TNTArrowEntity>{
 	
-	public static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/projectiles/arrow.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(MojiusMod.MOD_ID, "textures/entity/tntarrow.png");
 	
 	   public TNTArrowRender(EntityRendererManager manager) {
 		      super(manager);

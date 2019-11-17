@@ -24,7 +24,6 @@ public class ClientSetup {
 
         RenderingRegistry.registerEntityRenderingHandler(GrassmanEntity.class, new GrassmanRender.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(TNTArrowEntity.class, new TNTArrowRender.RenderFactory());
-
     }
     
 	 @SubscribeEvent
