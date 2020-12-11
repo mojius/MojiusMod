@@ -26,11 +26,6 @@ public class ClientSetup {
         RenderingRegistry.registerEntityRenderingHandler(TNTArrowEntity.class, new TNTArrowRender.RenderFactory());
     }
     
-	 @SubscribeEvent
-	 public static void onItemColor(ColorHandlerEvent.Item event) {
-	 event.getItemColors().register((stack, i) -> 0x006600, InitItem.grassman_spawn_egg); //Don't know how this works
-	 }
-	
 	
 }
 

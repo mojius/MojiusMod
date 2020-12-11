@@ -2,7 +2,10 @@ package com.mojius.mojiusmod.setup;
 
 import com.mojius.mojiusmod.MojiusMod;
 import com.mojius.mojiusmod.block.RedBricksBlock;
+import com.mojius.mojiusmod.block.RopeCoilBlock;
+import com.mojius.mojiusmod.block.RopeWallBlock;
 import com.mojius.mojiusmod.entities.GrassmanEntity;
+import com.mojius.mojiusmod.entities.MonsterAboveGroundEntity;
 import com.mojius.mojiusmod.entities.TNTArrowEntity;
 import com.mojius.mojiusmod.init.InitBlock;
 import com.mojius.mojiusmod.init.InitEntity;
@@ -12,6 +15,7 @@ import com.mojius.mojiusmod.items.TNTArrowItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -21,6 +25,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -44,8 +49,8 @@ import net.minecraftforge.fml.common.Mod;
 		@SubscribeEvent
 		public static void registerBlocks(final RegistryEvent.Register<Block> event)
 		{
-			event.getRegistry().registerAll(new RedBricksBlock());
-		}
+			event.getRegistry().registerAll(new RedBricksBlock(), new RopeCoilBlock(), new RopeWallBlock());
+		}	
 		
 		
 		@SubscribeEvent
@@ -63,6 +68,12 @@ import net.minecraftforge.fml.common.Mod;
 					.group(ItemGroup.COMBAT)),
 					
 					new GrassmanEggItem()
+					
+//					new BlockItem(InitBlock.rope_coil,
+//					new Item.Properties()
+//					.group(ItemGroup.TOOLS))
+//					.setRegistryName(InitBlock.rope_coil
+//							.getRegistryName())
 			);
 			
 		}
@@ -77,24 +88,28 @@ import net.minecraftforge.fml.common.Mod;
 			InitEntity.TNTARROW = (EntityType<TNTArrowEntity>) EntityType.Builder.<TNTArrowEntity>create(TNTArrowEntity::new, EntityClassification.MISC)
 					.size(0.5F, 0.5F)
 					.setCustomClientFactory((spawnEntity, world) -> new TNTArrowEntity(InitEntity.TNTARROW, world)) //TODO: Figure what the fuck this does
-					.build("tnt_arrow")
+					.build("mojiusmod:tnt_arrow")
 					.setRegistryName(RegistryEvents.registerResourceLocation("tnt_arrow")),
 			
-			InitEntity.GRASSMAN = EntityType.Builder.create(GrassmanEntity::new, EntityClassification.MONSTER)
+			InitEntity.GRASSMAN = (EntityType<GrassmanEntity>) EntityType.Builder.create(GrassmanEntity::new, EntityClassification.MONSTER)
 					.size(0.6f, 1.8f)
-					.build("grassman")
+					.build("mojiusmod:grassman")
 					.setRegistryName(RegistryEvents.registerResourceLocation("grassman")));
 					
-			
-			
+		
 			registerEntityWorldSpawns();
+			
+			InitEntity.registerGrassman((EntityType<GrassmanEntity>) InitEntity.GRASSMAN, 
+					EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, 
+					Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, 
+					MonsterAboveGroundEntity::func_223325_pingas);
 			
 		}
 		
 		
 		public static void registerEntityWorldSpawns()
 		{
-			registerEntityWorldSpawn(InitEntity.GRASSMAN, EntityClassification.MONSTER, 1, 4, 6,
+			registerEntityWorldSpawn(InitEntity.GRASSMAN, EntityClassification.MONSTER, 50, 3, 5,
 					Biomes.DARK_FOREST_HILLS, 
 					Biomes.DARK_FOREST,
 					Biomes.FLOWER_FOREST,
@@ -114,7 +129,10 @@ import net.minecraftforge.fml.common.Mod;
 					Biomes.BIRCH_FOREST_HILLS,
 					Biomes.TALL_BIRCH_FOREST
 					);
+			
+
 		}	
+		
 		
 		public static void registerEntityWorldSpawn(EntityType<?> entity, EntityClassification classification, int weight, int minAmount, int maxAmount, Biome...biomes)
 		{
@@ -125,7 +143,6 @@ import net.minecraftforge.fml.common.Mod;
 					biome.getSpawns(classification).add(new SpawnListEntry(entity, weight, minAmount, maxAmount));
 				}
 			}
-			
 			
 		}
 
